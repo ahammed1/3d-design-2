@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mushroom — Wireless Charger Landing Page</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="selection:bg-[#282b34] selection:text-white">
+
+  <!-- Architectural Left Guide Line -->
+  <div class="guide-line"></div>
+
+  <!-- Initial Splash Screen Loader (00:01 in video) -->
+  <div id="intro-loader" aria-label="Loading intro animation">
+    <div id="intro-word" class="text-[clamp(2.8rem,6.5vw,5.6rem)] font-bold tracking-[-0.045em] text-[#282b34] flex"></div>
+  </div>
+
+  <!-- Fixed Left Mushroom Double-Chevron Scroll Progress Indicator -->
+  <button
+    id="scroll-mushroom-btn"
+    type="button"
+    title="Scroll indicator (click to return to top / replay intro)"
+    class="fixed left-[3.2vw] z-40 w-8 h-8 flex items-center justify-center text-[#282b34] hover:scale-110 transition-transform duration-200 focus:outline-none"
+    style="top: 36px;"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <!-- Top mushroom cap chevron -->
+      <path d="M12 3.5L3.5 11.2H20.5L12 3.5Z" />
+      <!-- Lower mushroom stem/chevron -->
+      <path d="M12 11.8L5.2 18.5H18.8L12 11.8Z" />
+    </svg>
+  </button>
+
+  <!-- Fixed Top-Right Social Links -->
+  <div class="fixed top-[38px] right-[3.4vw] z-40 flex items-center gap-4 text-[#282b34]">
+    <button type="button" data-social="Instagram" class="social-trigger hover:opacity-60 transition-opacity p-1" aria-label="Instagram">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+    </button>
+    <button type="button" data-social="Twitter / X" class="social-trigger hover:opacity-60 transition-opacity p-1" aria-label="Twitter">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </button>
+    <button type="button" data-social="Facebook" class="social-trigger hover:opacity-60 transition-opacity p-1" aria-label="Facebook">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </button>
+  </div>
+
+  <!-- Top Navigation Header (Aligned with 17.5vw guide line) -->
+  <header class="relative z-30 pt-[38px] pl-[17.5vw] content-offset flex items-center justify-between pr-[10vw]">
+    <nav class="flex items-center gap-8 text-[13px] font-medium text-[#282b34]">
+      <a href="#specs" class="nav-scroll hover:opacity-60 transition-opacity">Specs</a>
+      <a href="#concept" class="nav-scroll hover:opacity-60 transition-opacity">About</a>
+      <button type="button" id="nav-store-btn" class="hover:opacity-60 transition-opacity">Store</button>
+    </nav>
+  </header>
+
+  <!-- ==================== SECTION 1: HERO ==================== -->
+  <section id="hero" class="relative min-h-[118vh] pt-[9vh] pb-[14vh] overflow-hidden">
+    <!-- Topmost Floating Black Charger (partially cropped at top edge of viewport like frame_008.jpg) -->
+    <div
+      class="floating-charger pointer-events-none select-none absolute z-20 right-[12vw] -top-[115px] w-[35vw] min-w-[270px] max-w-[520px]"
+      data-parallax="-0.22"
+      data-rotate="2"
+    >
+      <img src="assets/charger_black.webp" alt="Mushroom Charger Obsidian Black" class="w-full h-auto block" />
+    </div>
+
+    <!-- Second Floating Dark Slate Charger (above/overlapping 'hr' in mushroom) -->
+    <div
+      class="floating-charger pointer-events-none select-none absolute z-20 right-[16vw] top-[9.5vh] w-[38vw] min-w-[290px] max-w-[560px]"
+      data-parallax="-0.32"
+      data-rotate="-3"
+    >
+      <img src="assets/charger_slate.webp" alt="Mushroom Charger Slate Grey" class="w-full h-auto block" />
+    </div>
+
+    <!-- Giant Full-Bleed "mushroom" Heading -->
+    <div class="relative z-10 mt-[7vh] w-full overflow-hidden">
+      <h1 id="hero-word" class="giant-word pl-[0.4vw]" data-word="mushroom">mushroom</h1>
+    </div>
+
+    <!-- Third Floating Dusty Blue Charger (overlapping 'oom' in front of giant heading) -->
+    <div
+      class="floating-charger pointer-events-none select-none absolute z-20 right-[9.5vw] top-[34vh] w-[39vw] min-w-[300px] max-w-[580px]"
+      data-parallax="-0.44"
+      data-rotate="4"
+    >
+      <img src="assets/charger_blue.webp" alt="Mushroom Charger Nordic Blue" class="w-full h-auto block" />
+    </div>
+
+    <!-- Price ($129) + Description + Preorder Button -->
+    <div class="relative z-30 mt-[4.5vh] flex flex-col md:flex-row items-start">
+      <div class="pl-[6vw] content-offset w-full md:w-[17.5vw] shrink-0 mb-4 md:mb-0">
+        <span class="text-[22px] md:text-[24px] font-semibold tracking-tight text-[#282b34]">$129</span>
+      </div>
+      <div class="pl-[24px] md:pl-0 max-w-[265px]">
+        <p class="text-[13px] leading-[1.6] text-[#5a5e66] font-normal mb-9">
+          Mushroom is a wireless charger, characterized by a simple and essential design, defined by soft and rounded lines.
+        </p>
+        <button type="button" class="btn-preorder open-preorder-modal" data-color="blue">
+          <span>Preorder</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Fourth Floating Terracotta Orange Charger (bottom center-right in frame_008.jpg) -->
+    <div
+      class="floating-charger pointer-events-none select-none absolute z-20 right-[19.5vw] top-[61vh] w-[38vw] min-w-[290px] max-w-[560px]"
+      data-parallax="-0.56"
+      data-rotate="3"
+    >
+      <img src="assets/charger_orange.webp" alt="Mushroom Charger Terracotta Orange" class="w-full h-auto block" />
+    </div>
+
+    <!-- Fifth Floating White Charger (scrolls up from bottom as seen in frame_010.jpg) -->
+    <div
+      class="floating-charger pointer-events-none select-none absolute z-20 right-[11vw] top-[92vh] w-[36vw] min-w-[270px] max-w-[530px]"
+      data-parallax="-0.68"
+      data-rotate="-4"
+    >
+      <img src="assets/charger_white.webp" alt="Mushroom Charger Chalk White" class="w-full h-auto block" />
+    </div>
+  </section>
+
+  <!-- ==================== SECTION 2: CONCEPT ==================== -->
+  <section id="concept" class="relative pt-[12vh] pb-[10vh] overflow-hidden">
+    <!-- Top-right soft-focus White Charger (matching frame_018.jpg upper right corner) -->
+    <div
+      class="floating-charger pointer-events-none select-none absolute z-10 -right-[8vw] top-[2vh] w-[34vw] min-w-[250px] max-w-[490px] opacity-80 blur-[1px]"
+      data-parallax="-0.18"
+      data-rotate="12"
+    >
+      <img src="assets/charger_white.webp" alt="Mushroom White Soft Blur" class="w-full h-auto block" />
+    </div>
+
+    <!-- Concept Copy Block at 17.5vw -->
+    <div class="relative z-20 pl-[17.5vw] content-offset max-w-[calc(17.5vw+285px)]">
+      <p class="text-[13px] leading-[1.62] text-[#5a5e66] mb-6">
+        The project intends to create a product that stands out by its shape, finding a perfect balance between meaning and function.
+      </p>
+      <p class="text-[13px] leading-[1.62] text-[#5a5e66]">
+        The object is inspired by the shape of the mushroom, reinterpreted, and adapted to respond to aesthetic and functional needs while maintaining its peculiar form intact.
+      </p>
+    </div>
+
+    <!-- Center-Right Domed Top-View Dark Olive-Slate Charger (frame_018.jpg) -->
+    <div
+      class="floating-charger pointer-events-none select-none relative md:absolute z-20 right-[12vw] md:top-[16vh] w-[44vw] min-w-[300px] max-w-[640px] ml-auto my-6 md:my-0"
+      data-parallax="-0.28"
+      data-rotate="-2"
+    >
+      <img src="assets/charger_concept_top.webp" alt="Mushroom Top Dome Profile" class="w-full h-auto block" />
+    </div>
+
+    <!-- Far-Right Steeply Tilted Blue Charger (frame_018.jpg bottom right edge) -->
+    <div
+      class="floating-charger pointer-events-none select-none hidden md:block absolute z-20 -right-[12vw] top-[34vh] w-[36vw] max-w-[520px]"
+      data-parallax="-0.38"
+      data-rotate="-28"
+    >
+      <img src="assets/charger_blue.webp" alt="Mushroom Side Edge Profile" class="w-full h-auto block" />
+    </div>
+
+    <!-- Giant "concept" Display Heading -->
+    <div class="relative z-10 mt-[14vh] md:mt-[24vh] w-full overflow-hidden">
+      <h2 id="concept-word" class="giant-word pl-[0.4vw]" data-word="concept">concept</h2>
+    </div>
+  </section>
+
+  <!-- ==================== SECTION 3: EXPLODED VIEW & SPECS ==================== -->
+  <section id="specs-section" class="relative pt-[6vh] pb-[14vh]">
+    <div class="relative z-20 grid grid-cols-1 lg:grid-cols-12 items-center gap-8">
+      <!-- Left Column Copy (aligned to 17.5vw) -->
+      <div class="lg:col-span-5 pl-[17.5vw] content-offset">
+        <div class="max-w-[275px]">
+          <p class="text-[13px] leading-[1.62] text-[#5a5e66] mb-6">
+            Mushroom charger has a 15W transmitter coil, a number of station packs with a lot of power going into its quirky frame.
+          </p>
+          <p class="text-[13px] leading-[1.62] text-[#5a5e66] mb-9">
+            With the charge power comparable to wired charges, Mushroom is an excellent choice for both routine charging throughout the day and overnight marathon charging.
+          </p>
+          <button type="button" class="btn-preorder open-preorder-modal" data-color="orange">
+            <span>Preorder</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column: Scroll-Driven + Interactive 3D Exploded Orange Charger (frame_024 & frame_025) -->
+      <div class="lg:col-span-7 flex flex-col items-center justify-center pr-[4vw]">
+        <div id="exploded-stage" class="relative w-full max-w-[560px] h-[390px] md:h-[440px] flex items-center justify-center select-none">
+          <!-- Layer 3 (Bottom): Orange Lower Dish + Silver PCB + 15W Induction Coil -->
+          <img
+            id="exp-layer-base"
+            src="assets/exploded_base.webp"
+            alt="15W Induction Coil and Lower Housing"
+            class="absolute w-[88%] max-w-[490px] h-auto transition-transform duration-150 ease-out"
+            style="transform: translateY(68px); z-index: 10;"
+          />
+          <!-- Layer 2 (Middle): Dark Magnetic Shield Ring + Alignment Screws -->
+          <img
+            id="exp-layer-ring"
+            src="assets/exploded_ring.webp"
+            alt="Magnetic Shield Ring and Fasteners"
+            class="absolute w-[88%] max-w-[490px] h-auto transition-transform duration-150 ease-out"
+            style="transform: translateY(-4px); z-index: 20;"
+          />
+          <!-- Layer 1 (Top): Orange Soft Padded Leather Top Cap -->
+          <img
+            id="exp-layer-top"
+            src="assets/exploded_top.webp"
+            alt="Magnetic Padded Leather Surface Cap"
+            class="absolute w-[88%] max-w-[490px] h-auto transition-transform duration-150 ease-out"
+            style="transform: translateY(-76px); z-index: 30;"
+          />
+
+          <!-- Dynamic Callout Badge when a Spec item is clicked -->
+          <div
+            id="spec-callout-pill"
+            class="opacity-0 pointer-events-none transition-all duration-300 absolute -top-2 right-4 bg-[#282b34] text-white text-[11px] font-medium px-3.5 py-1.5 rounded-full shadow-md z-40"
+          >
+            Up to 15W wireless power output
+          </div>
+        </div>
+
+        <!-- Subtle interactive explode control for reference inspection -->
+        <div class="flex items-center gap-3 mt-2 text-[11px] text-[#6c7078]">
+          <span>Assembled</span>
+          <input
+            id="explode-slider"
+            type="range"
+            min="0"
+            max="100"
+            value="85"
+            aria-label="Exploded view separation"
+            class="w-28 accent-[#282b34] cursor-pointer h-1 bg-gray-300 rounded-lg"
+          />
+          <span>Exploded</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Specs 5-Item Grid (frame_024 & frame_026) -->
+    <div id="specs" class="relative z-20 mt-[8vh] pt-6 flex flex-col md:flex-row items-start">
+      <div class="pl-[6vw] content-offset w-full md:w-[17.5vw] shrink-0 mb-6 md:mb-0 pt-7">
+        <span class="text-[12px] font-medium text-[#282b34]">Specs</span>
+      </div>
+
+      <div class="pl-[24px] md:pl-0 pr-[8vw] w-full max-w-[680px] grid grid-cols-2 sm:grid-cols-3 gap-x-12 gap-y-10">
+        <!-- Spec 1 -->
+        <div class="spec-item group" data-spec="Up to 15W wireless power output — Qi & MagSafe compatible high-efficiency copper-silver coil" data-explode="100">
+          <div class="spec-plus">+</div>
+          <p class="text-[12px] leading-[1.45] text-[#5a5e66] group-hover:text-[#282b34] max-w-[145px]">
+            Up to 15W wireless power output
+          </p>
+        </div>
+
+        <!-- Spec 2 -->
+        <div class="spec-item group" data-spec="Power adapter cord length: 1.5m braided low-profile cable included" data-explode="65">
+          <div class="spec-plus">+</div>
+          <p class="text-[12px] leading-[1.45] text-[#5a5e66] group-hover:text-[#282b34] max-w-[145px]">
+            Power adapter cord length: 1.5m
+          </p>
+        </div>
+
+        <!-- Spec 3 -->
+        <div class="spec-item group" data-spec="USB-C powerinput — Reversible PD 3.0 fast-charge input recessed into the saucer rim" data-explode="50">
+          <div class="spec-plus">+</div>
+          <p class="text-[12px] leading-[1.45] text-[#5a5e66] group-hover:text-[#282b34] max-w-[145px]">
+            USB-C powerinput
+          </p>
+        </div>
+
+        <!-- Spec 4 -->
+        <div class="spec-item group" data-spec="LED wireless charging indicator — Micro-pinhole ambient status light" data-explode="40">
+          <div class="spec-plus">+</div>
+          <p class="text-[12px] leading-[1.45] text-[#5a5e66] group-hover:text-[#282b34] max-w-[145px]">
+            LED wireless charging indicator
+          </p>
+        </div>
+
+        <!-- Spec 5 -->
+        <div class="spec-item group" data-spec="Magnetic padded leather surface — Soft-touch anti-slip top cap" data-explode="95">
+          <div class="spec-plus">+</div>
+          <p class="text-[12px] leading-[1.45] text-[#5a5e66] group-hover:text-[#282b34] max-w-[145px]">
+            Magnetic padded leather surface
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SECTION 4: 3-COLUMN LIFESTYLE GALLERY ==================== -->
+  <section id="gallery" class="relative py-[6vh] overflow-hidden">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-[18px] w-full items-start">
+      <!-- Column 1: White Minimalist Box Packaging (staggered down on scroll like frame_027 & frame_029) -->
+      <div id="gal-col-1" class="overflow-hidden bg-[#6b7c88] mt-0 md:mt-[7vh] h-[68vh] md:h-[84vh]">
+        <img
+          src="assets/gallery_box.jpg"
+          alt="Mushroom Wireless Charger Minimalist White Packaging"
+          class="w-full h-full object-cover object-center scale-105 transition-transform duration-700 hover:scale-100"
+        />
+      </div>
+
+      <!-- Column 2: Top-Down iPhone Charging on Olive-Slate Pad (curved bottom-right corner) -->
+      <div id="gal-col-2" class="overflow-hidden bg-[#3c413b] gallery-col-mid h-[68vh] md:h-[90vh]">
+        <img
+          src="assets/gallery_phone.jpg"
+          alt="Smartphone Wireless Charging Top-Down View"
+          class="w-full h-full object-cover object-center scale-105 transition-transform duration-700 hover:scale-100"
+        />
+      </div>
+
+      <!-- Column 3: Moody Dark Studio Desk Close-Up (curved bottom-left corner) -->
+      <div id="gal-col-3" class="overflow-hidden bg-[#1e2124] gallery-col-right mt-0 md:-mt-[3vh] h-[68vh] md:h-[93vh]">
+        <img
+          src="assets/gallery_desk.jpg"
+          alt="Mushroom Charger Dark Studio Desk View"
+          class="w-full h-full object-cover object-center scale-105 transition-transform duration-700 hover:scale-100"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SECTION 5: PREORDER & WIREFRAME ANIMATION ==================== -->
+  <section id="preorder" class="relative pt-[16vh] pb-[18vh] overflow-hidden">
+    <!-- Top Row: Preorder Headline + Button on Left, Technical Wireframe Charger on Right (frame_036.jpg) -->
+    <div class="relative z-20 pl-[17.5vw] content-offset pr-[8vw] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
+      <div>
+        <h3 class="text-[26px] md:text-[33px] font-normal tracking-[-0.025em] text-[#282b34] mb-8">
+          Preorder now on Kickstarter for $129
+        </h3>
+        <button type="button" class="btn-preorder open-preorder-modal" data-color="slate">
+          <span>Preorder</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+
+      <!-- Upper Technical CAD Wireframe SVG (frame_036.jpg) -->
+      <div id="wireframe-top" class="w-[310px] md:w-[380px] self-end lg:self-center transition-transform duration-300">
+        <svg viewBox="0 0 420 170" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+          <!-- Outer squircle saucer dome contour -->
+          <path d="M22 72 C22 32, 110 18, 210 18 C310 18, 398 32, 398 72 C398 98, 326 116, 210 116 C94 116, 22 98, 22 72 Z" stroke="#282b34" stroke-width="1.15" />
+          <!-- Rim equator line -->
+          <path d="M23 76 C68 102, 138 111, 210 111 C282 111, 352 102, 397 76" stroke="#282b34" stroke-width="0.9" stroke-opacity="0.7" />
+          <!-- Top central subtle charging ring -->
+          <ellipse cx="210" cy="44" rx="18" ry="4.5" stroke="#282b34" stroke-width="0.8" stroke-opacity="0.6" />
+          <!-- Stepped lower neck & base ring -->
+          <path d="M98 109 L106 125 C128 139, 292 139, 314 125 L322 109" stroke="#282b34" stroke-width="1.1" />
+          <path d="M114 128 C142 142, 278 142, 306 128" stroke="#282b34" stroke-width="0.9" />
+          <!-- Subtle wireframe cross-contours -->
+          <path d="M105 30 C165 65, 255 65, 315 30" stroke="#282b34" stroke-width="0.5" stroke-opacity="0.35" stroke-dasharray="3 3" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Giant "preorder" Display Word (frame_036 & frame_038) -->
+    <div class="relative z-10 mt-[8vh] w-full overflow-hidden">
+      <h2 id="preorder-word" class="giant-word pl-[0.4vw]" data-word="preorder">preorder</h2>
+    </div>
+
+    <!-- Scroll-Animated Wireframe Charger + Plugging USB-C Cable (frame_038, frame_039, frame_040) -->
+    <div id="wireframe-plug-stage" class="relative z-20 mt-[8vh] h-[270px] md:h-[320px] w-full flex items-center justify-center overflow-hidden">
+      <div class="relative w-[520px] max-w-[92vw] h-[240px]">
+        <!-- Wireframe Charger Body with USB-C Port on Lower Right -->
+        <svg
+          id="wireframe-charger-lower"
+          viewBox="0 0 440 190"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-[340px] md:w-[390px] h-auto absolute left-[2%] top-[10px] transition-transform duration-200 ease-out"
+        >
+          <!-- Outer saucer dome -->
+          <path d="M24 76 C24 34, 114 20, 214 20 C314 20, 404 34, 404 76 C404 104, 330 122, 214 122 C98 122, 24 104, 24 76 Z" stroke="#282b34" stroke-width="1.15" />
+          <!-- Equator bevel -->
+          <path d="M25 80 C72 107, 142 116, 214 116 C286 116, 356 107, 403 80" stroke="#282b34" stroke-width="0.85" stroke-opacity="0.75" />
+          <!-- Top logo mark oval -->
+          <ellipse cx="214" cy="48" rx="16" ry="4" stroke="#282b34" stroke-width="0.8" stroke-opacity="0.65" />
+          <!-- Internal subtle wireframe ribs -->
+          <path d="M75 46 C155 88, 275 88, 355 46" stroke="#282b34" stroke-width="0.5" stroke-opacity="0.3" />
+          <!-- Stepped lower neck -->
+          <path d="M100 115 L108 132 C132 146, 296 146, 320 132 L328 115" stroke="#282b34" stroke-width="1.1" />
+          <path d="M116 135 C146 149, 282 149, 312 135" stroke="#282b34" stroke-width="0.9" />
+          <!-- USB-C Port Recessed Socket on lower-right rim -->
+          <rect x="275" y="119" width="18" height="7" rx="3.5" stroke="#282b34" stroke-width="1.1" fill="#f4f4f4" />
+          <circle id="wireframe-led" cx="266" cy="122.5" r="1.8" fill="#282b34" />
+        </svg>
+
+        <!-- Animated Wireframe USB-C Connector + Cord (glides diagonally into the port on scroll or click) -->
+        <svg
+          id="wireframe-cable"
+          viewBox="0 0 220 130"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-[180px] md:w-[210px] h-auto absolute left-[52%] top-[98px] transition-transform duration-200 ease-out"
+        >
+          <!-- Metallic USB-C tip -->
+          <path d="M18 22 L32 17 C34 16.5, 36 17.5, 36 19.5 L22 25 C20 25.5, 18 24, 18 22 Z" stroke="#282b34" stroke-width="1.05" fill="#f4f4f4" />
+          <!-- Molded USB-C plug housing (rounded pill perspective) -->
+          <path d="M24 24 L54 14 C62 11.5, 72 15, 75 22 C78 29, 73 36, 64 39 L34 49 C26 51.5, 18 47, 16 40 C14 33, 17 26.5, 24 24 Z" stroke="#282b34" stroke-width="1.15" fill="#f4f4f4" />
+          <path d="M34 26 C40 28, 43 35, 40 42" stroke="#282b34" stroke-width="0.8" stroke-opacity="0.65" />
+          <!-- Strain relief collar -->
+          <path d="M69 36 L86 46 C89 48, 86 53, 82 51 L64 40" stroke="#282b34" stroke-width="1.05" fill="#f4f4f4" />
+          <!-- Braided 1.5m cord extending toward bottom-right -->
+          <path d="M86 47 C122 68, 164 92, 215 120" stroke="#282b34" stroke-width="1.15" />
+          <path d="M83 51 C119 72, 161 96, 212 124" stroke="#282b34" stroke-width="1.15" />
+        </svg>
+      </div>
+
+      <!-- Interactive Toggle to test/replay USB-C plug animation -->
+      <button
+        type="button"
+        id="toggle-plug-btn"
+        class="absolute bottom-2 right-[8vw] text-[11px] text-[#6c7078] hover:text-[#282b34] border border-gray-300 px-3 py-1 rounded-full transition-colors"
+      >
+        Connect USB-C Cable
+      </button>
+    </div>
+  </section>
+
+  <!-- ==================== SECTION 6: FOOTER ==================== -->
+  <footer id="footer" class="relative h-screen min-h-[540px] flex flex-col items-center justify-between py-12 overflow-hidden">
+    <div class="h-6"></div>
+
+    <!-- Centered Footer "mushroom" Wordmark with Slice Reveal Animation (frame_043 & frame_044) -->
+    <div class="flex flex-col items-center justify-center">
+      <div
+        id="footer-word"
+        class="text-[clamp(3.6rem,8.8vw,7.8rem)] font-bold tracking-[-0.048em] text-[#282b34] leading-none flex cursor-pointer"
+        data-word="mushroom"
+        title="Click to replay intro animation"
+      >
+        mushroom
+      </div>
+    </div>
+
+    <!-- Bottom Credit (frame_044) -->
+    <div class="text-center">
+      <p class="text-[11.5px] text-[#6c7078] tracking-[-0.01em]">
+        Designed &amp; developed by <button type="button" id="credit-link" class="underline decoration-gray-400 hover:text-[#282b34] transition-colors">Shakuro</button>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ==================== INTERACTIVE PREORDER & COLOR STORE MODAL ==================== -->
+  <div
+    id="preorder-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 backdrop-blur-xs p-4"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+  >
+    <div class="bg-[#f8f8f8] border border-gray-200 w-full max-w-[520px] p-7 md:p-9 shadow-2xl relative">
+      <button
+        type="button"
+        id="close-modal-btn"
+        class="absolute top-6 right-6 w-8 h-8 flex items-center justify-center text-[#282b34] hover:opacity-60 text-xl"
+        aria-label="Close modal"
+      >
+        &times;
+      </button>
+
+      <div class="text-[11px] uppercase tracking-widest text-[#6c7078] mb-1">Kickstarter Early Bird</div>
+      <h4 id="modal-title" class="text-2xl font-bold tracking-tight text-[#282b34] mb-4">Preorder Mushroom — $129</h4>
+
+      <!-- Live Color Preview inside Modal -->
+      <div class="bg-[#eeeeee] h-44 flex items-center justify-center mb-6 relative overflow-hidden">
+        <img
+          id="modal-charger-img"
+          src="assets/charger_blue.webp"
+          alt="Selected Mushroom Charger Finish"
+          class="w-64 h-auto transition-all duration-300"
+        />
+        <span id="modal-color-label" class="absolute bottom-2.5 right-3 text-[11px] font-medium text-[#5a5e66]">
+          Nordic Blue
+        </span>
+      </div>
+
+      <!-- Color Swatches -->
+      <div class="mb-6">
+        <label class="block text-[12px] font-medium text-[#282b34] mb-2.5">Select Finish</label>
+        <div class="flex items-center gap-3">
+          <button type="button" data-finish="black" data-label="Obsidian Black" data-img="assets/charger_black.webp" class="finish-swatch w-7 h-7 rounded-full bg-[#2a2d32] ring-offset-2 ring-[#282b34]"></button>
+          <button type="button" data-finish="slate" data-label="Forest Slate" data-img="assets/charger_slate.webp" class="finish-swatch w-7 h-7 rounded-full bg-[#5e6a71] ring-offset-2 ring-[#282b34]"></button>
+          <button type="button" data-finish="blue" data-label="Nordic Blue" data-img="assets/charger_blue.webp" class="finish-swatch w-7 h-7 rounded-full bg-[#7b9eb2] ring-2 ring-offset-2 ring-[#282b34]"></button>
+          <button type="button" data-finish="orange" data-label="Terracotta Orange" data-img="assets/charger_orange.webp" class="finish-swatch w-7 h-7 rounded-full bg-[#c86446] ring-offset-2 ring-[#282b34]"></button>
+          <button type="button" data-finish="white" data-label="Chalk White" data-img="assets/charger_white.webp" class="finish-swatch w-7 h-7 rounded-full bg-[#e8eaed] border border-gray-300 ring-offset-2 ring-[#282b34]"></button>
+        </div>
+      </div>
+
+      <!-- Quantity & Email Form -->
+      <form id="preorder-form" class="space-y-4">
+        <div class="flex items-center justify-between border-y border-gray-200 py-3">
+          <span class="text-[13px] text-[#282b34] font-medium">Quantity</span>
+          <div class="flex items-center gap-3">
+            <button type="button" id="qty-minus" class="w-7 h-7 border border-gray-300 flex items-center justify-center text-sm hover:bg-gray-200">-</button>
+            <span id="qty-val" class="text-sm font-semibold w-5 text-center">1</span>
+            <button type="button" id="qty-plus" class="w-7 h-7 border border-gray-300 flex items-center justify-center text-sm hover:bg-gray-200">+</button>
+          </div>
+        </div>
+
+        <div>
+          <input
+            id="backer-email"
+            type="email"
+            required
+            placeholder="Enter your email for Kickstarter pledge confirmation"
+            class="w-full px-3.5 py-2.5 text-[13px] bg-white border border-gray-300 focus:outline-none focus:border-[#282b34]"
+          />
+        </div>
+
+        <div class="flex items-center justify-between pt-2">
+          <div>
+            <span class="text-[11px] text-[#6c7078] block">Total Pledge</span>
+            <span id="modal-total-price" class="text-lg font-bold text-[#282b34]">$129</span>
+          </div>
+          <button type="submit" class="btn-preorder bg-[#282b34] text-white hover:opacity-90">
+            <span>Confirm Preorder</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </button>
+        </div>
+      </form>
+
+      <div id="preorder-success" class="hidden mt-4 p-3.5 bg-emerald-50 border border-emerald-200 text-emerald-900 text-[12.5px]">
+        Thank you! Your Kickstarter reservation for <strong id="confirm-summary">1x Mushroom (Nordic Blue)</strong> has been saved.
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification for Social / Credits -->
+  <div
+    id="toast-banner"
+    class="fixed bottom-5 right-5 z-50 bg-[#282b34] text-white text-[12px] px-4 py-2.5 shadow-lg opacity-0 pointer-events-none transition-opacity duration-300"
+  >
+    Link opened
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

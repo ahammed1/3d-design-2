@@ -1,0 +1,207 @@
+:root {
+      --bg-main: #f4f4f4;
+      --ink: #282b34;
+      --muted: #6c7078;
+      --line: rgba(40, 43, 52, 0.08);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background-color: var(--bg-main);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle architectural guide line at 17.5vw matching Webflow layout */
+    .guide-line {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 17.5vw;
+      width: 1px;
+      background: var(--line);
+      pointer-events: none;
+      z-index: 5;
+    }
+    @media (max-width: 768px) {
+      .guide-line {
+        left: 24px;
+      }
+    }
+
+    /* Giant display words (mushroom, concept, preorder) */
+    .giant-word {
+      font-size: 21.6vw;
+      font-weight: 700;
+      line-height: 0.82;
+      letter-spacing: -0.05em;
+      color: var(--ink);
+      user-select: none;
+      white-space: nowrap;
+      display: flex;
+      align-items: baseline;
+    }
+
+    /* Vertical slice reveal effect for each character in giant words */
+    .char-box {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+      padding-bottom: 0.08em;
+    }
+    .char-inner {
+      display: inline-block;
+      transform: translateY(108%) scaleX(0.92);
+      opacity: 0;
+      filter: blur(2px);
+      transition:
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
+    }
+    .word-revealed .char-inner {
+      transform: translateY(0%) scaleX(1);
+      opacity: 1;
+      filter: blur(0px);
+    }
+
+    /* Slice mask bars that create the signature segmented vertical bar reveal seen in the video */
+    .char-box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        transparent 68%,
+        var(--bg-main) 68%,
+        var(--bg-main) 100%
+      );
+      transform: translateY(0%);
+      transition: transform 0.95s cubic-bezier(0.19, 1, 0.22, 1);
+      pointer-events: none;
+    }
+    .word-revealed .char-box::after {
+      transform: translateY(-105%);
+    }
+
+    /* Outlined Preorder Button */
+    .btn-preorder {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 13px 24px;
+      min-width: 148px;
+      border: 1px solid rgba(40, 43, 52, 0.55);
+      background: transparent;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-preorder:hover {
+      background: var(--ink);
+      color: #ffffff;
+      border-color: var(--ink);
+    }
+    .btn-preorder svg {
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-preorder:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* Splash Intro Overlay */
+    #intro-loader {
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.7s;
+    }
+    #intro-loader.hidden-loader {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Floating charger plates: continuous levitation + 3D mouse/scroll parallax */
+    .floating-charger {
+      will-change: transform;
+      transition: filter 0.35s ease;
+      pointer-events: auto;
+      cursor: grab;
+    }
+    .floating-charger:hover {
+      filter: drop-shadow(0 28px 42px rgba(40, 43, 52, 0.18));
+    }
+    .floating-charger > img {
+      will-change: transform;
+      animation: plateFloat 5.2s ease-in-out infinite;
+      transform-origin: center center;
+    }
+    .floating-charger:nth-of-type(1) > img { animation-duration: 4.8s; animation-delay: 0s; }
+    .floating-charger:nth-of-type(2) > img { animation-duration: 5.5s; animation-delay: -1.1s; }
+    .floating-charger:nth-of-type(3) > img { animation-duration: 6.1s; animation-delay: -2.3s; }
+    .floating-charger:nth-of-type(4) > img { animation-duration: 5.2s; animation-delay: -3.4s; }
+    .floating-charger:nth-of-type(5) > img { animation-duration: 5.8s; animation-delay: -0.7s; }
+
+    @keyframes plateFloat {
+      0%, 100% {
+        transform: translate3d(0px, 0px, 0px) rotate(0deg) scale(1);
+      }
+      50% {
+        transform: translate3d(0px, -18px, 0px) rotate(2.4deg) scale(1.018);
+      }
+    }
+
+    /* Spec item cards */
+    .spec-item {
+      cursor: pointer;
+      transition: transform 0.25s ease, color 0.25s ease;
+    }
+    .spec-item:hover {
+      transform: translateY(-2px);
+    }
+    .spec-plus {
+      display: inline-block;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 14px;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .spec-item:hover .spec-plus,
+    .spec-item.active-spec .spec-plus {
+      transform: rotate(90deg) scale(1.15);
+    }
+
+    /* 3-Column Gallery curved bottom edges matching frame_029.jpg */
+    .gallery-col-mid {
+      border-bottom-right-radius: clamp(110px, 19vw, 270px);
+    }
+    .gallery-col-right {
+      border-bottom-left-radius: clamp(110px, 19vw, 270px);
+    }
+
+    @media (max-width: 768px) {
+      .giant-word {
+        font-size: 22.5vw;
+      }
+      .content-offset {
+        padding-left: 24px !important;
+      }
+    }
